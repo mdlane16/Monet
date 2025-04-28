@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loops and Arrays</title>
+</head>
+<body>
+
+<h1>Loop - D - Loop</h1>
+<div id="output"></div>
+
+<script>
+// 1. For loop from 0 to 10
+const outputDiv = document.getElementById('output');
+outputDiv.innerHTML += "<h2>Odds and Evens</h2>";
+
+for (let count = 0; count <= 10; count++) {
+    if (count % 2 === 0) {
+        outputDiv.innerHTML += `Count ${count} is even<br>`;
+    } else {
+        outputDiv.innerHTML += `Count ${count} is odd<br>`;
+    }
+}
+
+// 2. User inputs a number between 5 and 20
+let myNum = parseInt(prompt("Enter a number between 5 and 20:"));
+while (isNaN(myNum) || myNum < 5 || myNum > 20) {
+    myNum = parseInt(prompt("Invalid number. Please enter a number between 5 and 20:"));
+}
+
+// Do-While loop from 1 until it reaches myNum
+outputDiv.innerHTML += "<h2>Count it up</h2>";
+let counter = 1;
+do {
+    outputDiv.innerHTML += `Counter: ${counter}<br>`;
+    counter++;
+} while (counter <= myNum);
+
+// 3. Subjects array
+const subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+
+// Display array values using forEach()
+outputDiv.innerHTML += "<h2>Subjects List</h2>";
+subjects.forEach(function(subject) {
+    outputDiv.innerHTML += `${subject}<br>`;
+});
+
+// 4. Display array values separated by commas
+outputDiv.innerHTML += "<h2>Subjects</h2>";
+outputDiv.innerHTML += subjects.join(", ");
+
+</script>
+
+</body>
+</html>
