@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tip Calculator</title>
+</head>
+<body>
+  <script>
+    // Function to validate service quality input
+    function validateServiceQuality(quality) {
+      const validQualities = ['great', 'ok', 'poor'];
+      return validQualities.includes(quality.toLowerCase());
+    }
+
+    // Function to validate service amount input
+    function validateServiceAmount(amount) {
+      return !isNaN(amount) && amount >= 5 && amount <= 500;
+    }
+
+    // Function to calculate the tip based on quality
+    function calculateTip(amount, quality) {
+      let tipRate;
+      switch (quality.toLowerCase()) {
+        case 'great':
+          tipRate = 0.20;
+          break;
+        case 'ok':
+          tipRate = 0.15;
+          break;
+        case 'poor':
+          tipRate = 0.10;
+          break;
+      }
+      return amount * tipRate;
+    }
+
+    // Get user inputs
+    const amountInput = parseFloat(prompt("Enter the dollar amount of the service (between $5 and $500):"));
+    if (!validateServiceAmount(amountInput)) {
+      alert("Invalid amount. Please enter a value between $5.00 and $500.00.");
+    } else {
+      const qualityInput = prompt("Was the service great, ok, or poor?");
+      if (!validateServiceQuality(qualityInput)) {
+        alert("Invalid service quality. Please enter 'great', 'ok', or 'poor'.");
+      } else {
+        const tip = calculateTip(amountInput, qualityInput);
+        alert(`For a $${amountInput.toFixed(2)} service with ${qualityInput.toLowerCase()} service quality,\n` +
+              `the recommended tip is $${tip.toFixed(2)}.`);
+      }
+    }
+  </script>
+</body>
+</html>
