@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All about Bandit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h1 {
+            color: darkblue;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>All about Bandit</h1>
+    <div id="output"></div>
+
+    <script>
+        // === 1. Literal object: myDog ===
+        const myDog = {
+            name: "Bandit",
+            breed: "Terrier",
+            personality: "Energetic, adventurous, and loyal",
+            show: "Jonny Quest",
+            mySound: "You’ll always hear me coming because I’m a speed machine. If it's not fast, it just won’t last."
+        };
+
+        // Output for myDog
+        const outputDiv = document.getElementById("output");
+        outputDiv.innerHTML += "<h2>Literal Object</h2>";
+        outputDiv.innerHTML += `<p>Hello, my name is ${myDog.name}, and life is a big adventure. I am the star of the show ${myDog.show}. Not only am I the best ${myDog.breed}, but I’m also his loyal best friend!</p>`;
+        outputDiv.innerHTML += `<p><strong>My Sound:</strong> ${myDog.mySound}</p>`;
+
+        // === 2. Constructor function ===
+        function Dog(name, breed, personality, show, mySound, canTalk) {
+            this.name = name;
+            this.breed = breed;
+            this.personality = personality;
+            this.show = show;
+            this.mySound = mySound;
+            this.canTalk = canTalk;
+
+            this.myGreeting = function () {
+                return `<h2>Constructor Object</h2>
+                    <p>Hi there! I'm ${this.name} from ${this.show}. I'm a ${this.breed} known for being ${this.personality}.</p>
+                    <p><strong>My Sound:</strong> ${this.mySound}</p>
+                    <p><strong>Can I talk?</strong> ${this.canTalk ? "You bet I can!" : "Not really!"}</p>`;
+            };
+        }
+
+        // === 3. Create new dog and display ===
+        const myDogConst = new Dog(
+            "Bandit",
+            "Terrier",
+            "energetic, adventurous, and loyal",
+            "Jonny Quest",
+            "You’ll always hear me coming because I’m a speed machine. If it's not fast, it just won’t last.",
+            true
+        );
+
+        outputDiv.innerHTML += myDogConst.myGreeting();
+    </script>
+
+</body>
+</html>
