@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All about Bandit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h1 {
+            color: darkblue;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>All about Bandit</h1>
+    <div id="output"></div>
+
+    <script>
+        // === Constructor function ===
+        function Dog(name, breed, personality, show, mySound, canTalk) {
+            this.name = name;
+            this.breed = breed;
+            this.personality = personality;
+            this.show = show;
+            this.mySound = mySound;
+            this.canTalk = canTalk;
+
+            this.myGreeting = function () {
+                let talkMessage = this.canTalk ? "I can talk!" : "I can't talk.";
+                return `<h2>${this.name}</h2>
+                    <p>Hi! I'm ${this.name}, a ${this.breed} from the show <strong>${this.show}</strong>.</p>
+                    <p>My personality: ${this.personality}</p>
+                    <p>My sound: "${this.mySound}"</p>
+                    <p>${talkMessage}</p>`;
+            };
+        }
+
+        // === Create multiple dog objects ===
+        const dogs = {
+            Bandit: new Dog(
+                "Bandit",
+                "Terrier",
+                "Energetic, adventurous, and loyal",
+                "Jonny Quest",
+                "You’ll always hear me coming because I’m a speed machine. If it's not fast, it just won’t last.",
+                true
+            ),
+            ScoobyDoo: new Dog(
+                "Scooby-Doo",
+                "Great Dane",
+                "Goofy, cowardly but loyal",
+                "Scooby-Doo, Where Are You!",
+                "Scooby-Dooby-Doo!",
+                true
+            ),
+            Brian: new Dog(
+                "Brian",
+                "White Labrador",
+                "Smart, sarcastic, and loyal",
+                "Family Guy",
+                "I'm not your average dog. I drink martinis and quote Hemingway.",
+                true
+            )
+        };
+
+        // === Use for...in loop to display each dog's properties ===
+        const outputDiv = document.getElementById("output");
+
+        outputDiv.innerHTML += "<h2>Dog List</h2>";
+        for (let key in dogs) {
+            const dog = dogs[key];
+            outputDiv.innerHTML += "<ul>";
+            for (let prop in dog) {
+                if (typeof dog[prop] !== "function") {
+                    outputDiv.innerHTML += `<li><strong>${prop}:</strong> ${dog[prop]}</li>`;
+                }
+            }
+            outputDiv.innerHTML += "</ul>";
+        }
+
+        // === Prompt user for a dog name ===
+        const userChoice = prompt("Which dog would you like to learn more about? Type Bandit, ScoobyDoo, or Brian:");
+
+        // === Display selected dog info or show error ===
+        if (dogs[userChoice]) {
+            outputDiv.innerHTML += "<h2>Your Selected Dog:</h2>";
+            outputDiv.innerHTML += dogs[userChoice].myGreeting();
+        } else {
+            outputDiv.innerHTML += `<p style="color:red;"><strong>Error:</strong> Sorry, we couldn't find a dog with that name. Please try Bandit, ScoobyDoo, or Brian.</p>`;
+        }
+
+    </script>
+
+</body>
+</html>
